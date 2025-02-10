@@ -17,7 +17,11 @@ class JobFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'position_id' => \App\Models\Position::factory(),
+            'requirements' => $this->faker->text(),
+            'type' => $this->faker->randomElement([1, 2]),
+            'salary' => $this->faker->numberBetween(1000, 9000),
+            'status' => $this->faker->randomElement([1, 0]),
         ];
     }
 }

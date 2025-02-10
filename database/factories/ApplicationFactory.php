@@ -17,7 +17,10 @@ class ApplicationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween(1, 10),
+            'job_id' => $this->faker->numberBetween(1, 10),
+            'resume' => $this->faker->file(),
+            'status' => $this->faker->numberBetween(0, 3),
         ];
     }
 }

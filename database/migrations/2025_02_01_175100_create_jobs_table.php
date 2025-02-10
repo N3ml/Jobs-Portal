@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('position_id')->constrained()->onDelete('cascade');
             $table->text('requirements');
-            $table->string('type');
+            $table->tinyInteger('type');
             $table->integer('salary');
-            $table->string('status');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
