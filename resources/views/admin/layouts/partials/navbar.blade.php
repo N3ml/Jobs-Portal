@@ -42,7 +42,7 @@
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">Ahmed Waael</span>
+                <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
@@ -53,8 +53,7 @@
                     alt="User Image"
                   />
                   <p>
-                    Mohamed Nasr - Web Developer
-                    <small>Member since Nov. 2023</small>
+                      {{ auth()->user()->name }}
                   </p>
                 </li>
                 <!--end::User Image-->
@@ -62,8 +61,10 @@
 
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-danger btn-flat float-end">Sign out</a>
+                    <form action="{{ url('admin/logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-flat float-end">Sign out</button>
+                    </form>
                 </li>
                 <!--end::Menu Footer-->
               </ul>

@@ -4,6 +4,6 @@ namespace App\Enums;
 
 enum JobTypeEnum: int
 {
-    case ONSITE = 1;
-    case REMOTE = 2;
+    case FULLTIME = 1;
+    case PARTTIME = 2;
 }

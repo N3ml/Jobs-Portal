@@ -47,22 +47,27 @@
 
                   <li class="nav-item">
 
-                    <a href="./index.html" class="nav-link active">
+                    <a href="{{url('admin/admins')}}" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Admins</p>
                     </a>
 
-                    <a href="./index.html" class="nav-link active">
+                      <a href="{{url('admin/applicants')}}" class="nav-link active">
+                          <i class="nav-icon bi bi-circle"></i>
+                          <p>Applicants</p>
+                      </a>
+
+                    <a href="{{url('admin/positions')}}" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Positions </p>
                     </a>
 
-                    <a href="./index.html" class="nav-link active">
+                    <a href="{{url('admin/jobs')}}" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Jobs Listing</p>
+                      <p>Jobs</p>
                     </a>
 
-                    <a href="./index.html" class="nav-link active">
+                    <a href="{{url('admin/applications')}}" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Applications </p>
                     </a>
@@ -82,5 +87,3 @@
         <!--end::Sidebar Wrapper-->
       </aside>
       <!--end::Sidebar-->
-
-

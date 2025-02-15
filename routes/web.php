@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ApplicantController;
+use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\Admin\PositionController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,16 +19,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::group(['as' => 'website.'], function (){
+//    Route::get('/', [WebsiteHomeController::class, 'home'])->name('home');
+//    Route::resource('posts', PostController::class)->except('index');
+//});
+
+
+
+
+
+Route::group(['prefix' => 'admin'], function (){
+    Auth::routes();
+    Route::group(['as' => 'admin.', 'middleware' => ['auth', 'is-admin']], function (){
+        Route::get('/home', [HomeController::class, 'index'])->name('home');
+        Route::resource('positions', PositionController::class);
+        Route::resource('jobs', JobController::class);
+        Route::resource('applicants', ApplicantController::class)->only('index', 'destroy');
+        Route::resource('admins', AdminController::class);
+    });
+
 });
-
-Route::get('/testDashboard', function () {
-    return view('admin.home');
-});
-
-Auth::routes();
-
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
