@@ -39,3 +39,15 @@ Route::group(['prefix' => 'admin'], function (){
     });
 
 });
+
+Route::group([],function () {
+    Route::get('/', function () {
+        return view('website.home');
+    });
+    Route::get('/register', function () {
+        return view('website.auth.register');
+    });
+    Route::get('/login', function () {
+        return view('website.auth.login');
+    });
+});

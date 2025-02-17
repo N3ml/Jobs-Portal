@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function applications(): HasMany
     {
-        return $this->hasMany(Application::class);
+        return $this->hasMany(JobApplication::class);
     }
 
     public function scopeOfAdmins($query)
