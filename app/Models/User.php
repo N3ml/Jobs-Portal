@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\RoleEnum;
-use App\Enums\UserRoleEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -61,5 +60,16 @@ class User extends Authenticatable
     {
         return $query->where('role', RoleEnum::APPLICANT->value);
     }
+
+    public function isAdmin(): bool
+    {
+        return $this->role == RoleEnum::ADMIN->value;
+    }
+
+    public function isApplicant(): bool
+    {
+        return $this->role == RoleEnum::APPLICANT->value;
+    }
+
 
 }

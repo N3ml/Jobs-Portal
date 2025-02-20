@@ -17,26 +17,34 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="job_listing.html">Find a Jobs </a></li>
+                                            <li><a href="{{url('/')}}">Home</a></li>
                                             <li><a href="about.html">About</a></li>
-                                            <li><a href="#">Page</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                    <li><a href="elements.html">Elements</a></li>
-                                                    <li><a href="job_details.html">job Details</a></li>
-                                                </ul>
-                                            </li>
                                             <li><a href="contact.html">Contact</a></li>
+                                            @auth()
+                                                @if(auth()->user()->isApplicant())
+                                                <li><a href="">My Profile</a></li>
+                                                @endif
+                                                @if(auth()->user()->isAdmin())
+                                                <li><a href="{{url('admin/home')}}">Dashbord</a></li>
+                                                @endif
+                                            @endauth
                                         </ul>
                                     </nav>
                                 </div>
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
+                                    @auth()
+                                        <a onclick="document.getElementById('logoutForm').submit()" href="#" class="btn head-btn2">Logout</a>
+                                        <form action="{{ route('logout') }}" method="post" id="logoutForm">
+                                            @csrf
+                                        </form>
+                                    @endauth
+                                    @guest()
+                                        <a href="{{route('website.register')}}" class="btn head-btn1">Register</a>
+                                        <a href="{{route('website.login')}}" class="btn head-btn2">Login</a>
+                                    @endguest
                                 </div>
+
                             </div>
                         </div>
                         <!-- Mobile Menu -->

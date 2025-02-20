@@ -26,7 +26,7 @@
     <script src="{{ asset('website') }}/js/jquery.sticky.js"></script>
 
     <!-- contact js -->
-    <script src="{{ asset('website') }}/js/contact.js"></script>
+{{--    <script src="{{ asset('website') }}/js/contact.js"></script>--}}
     <script src="{{ asset('website') }}/js/jquery.form.js"></script>
     <script src="{{ asset('website') }}/js/jquery.validate.min.js"></script>
     <script src="{{ asset('website') }}/js/mail-script.js"></script>
@@ -35,4 +35,3 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="{{ asset('website') }}/js/plugins.js"></script>
     <script src="{{ asset('website') }}/js/main.js"></script>
-
