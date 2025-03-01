@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class JobApplication extends Model
+class Application extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,10 @@ class JobApplication extends Model
         'user_id',
         'job_id',
         'status',
+        'phone',
+        'address',
         'resume',
+
     ];
 
     public function user(): BelongsTo

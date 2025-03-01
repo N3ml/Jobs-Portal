@@ -10,7 +10,7 @@ class ApplicantController extends Controller
 {
     public function index()
     {
-        $applicants = User::ofApplicants()->paginate();
+        $applicants = User::ofApplicants()->paginate(8);
         return view('admin.applicants.index', compact('applicants'));
     }
 

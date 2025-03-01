@@ -1,59 +1,76 @@
 @extends('website.layouts.master')
-@php
-    use App\Enums\JobStatusEnum;
-    use App\Enums\JobTypeEnum;
-    use App\Enums\JobLocationEnum;
-@endphp
-@section('content')
-    <!-- Left Content -->
-    <div class="container mt-50 mb-30">
-        <div class="row justify-content-between">
 
-            <!-- Right Content -->
-            <div class="col-xl-6 col-lg-4">
-                <div class="post-details3  mb-50">
-                    <!-- Small Section Tittle -->
-                    <div class="small-section-tittle">
-                        <h4>Job Overview</h4>
-                    </div>
-                    <ul>
-                        <li>Posted date : <span>12 Aug 2019</span></li>
-                        <li>Location : <span>New York</span></li>
-                        <li>Vacancy : <span>02</span></li>
-                        <li>Job nature : <span>Full time</span></li>
-                        <li>Salary : <span>$7,800 yearly</span></li>
-                        <li>Application date : <span>12 Sep 2020</span></li>
-                    </ul>
-                </div>
+@section('content')
+<!-- Left Content -->
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 m-auto text-center">
+                <h2 class="contact-title ">Fill Your Application</h2>
             </div>
-            <!-- Right Content -->
-            <div class="col-xl-6 col-lg-4">
-                <div class="post-details3  mb-50">
-                    <!-- Small Section Tittle -->
-                    <div class="small-section-tittle">
-                        <h4>Job Overview</h4>
+            <div class="col-lg-8 m-auto">
+                <form class="form-contact contact_form" action="{{route('website.submit-apply-job',$job->id)}}" method="post" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-8 m-auto">
+                            <div class="form-group">
+                                <input class="form-control valid" name="name" id="name" type="text" value="{{auth()->user()->name}}" disabled>
+                            </div>
+                        </div>
                     </div>
-                    <ul>
-                        <li>Posted date : <span>12 Aug 2019</span></li>
-                        <li>Location : <span>New York</span></li>
-                        <li>Vacancy : <span>02</span></li>
-                        <li>Job nature : <span>Full time</span></li>
-                        <li>Salary : <span>$7,800 yearly</span></li>
-                        <li>Application date : <span>12 Sep 2020</span></li>
-                    </ul>
-                </div>
+                    <div class="row">
+                        <div class="col-sm-8 m-auto">
+                            <div class="form-group">
+                                <input class="form-control valid" name="email" id="email" type="email" value="{{auth()->user()->email}}" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8 m-auto">
+                            <div class="form-group">
+                                <input class="form-control" name="phone" id="phone" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'" placeholder="Phone Number">
+                                @error('phone')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8 m-auto">
+                            <div class="form-group">
+                                <input class="form-control" name="address" id="address" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Address'" placeholder="Your Address">
+                                @error('address')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8 m-auto">
+                            <div class="small-section-tittle">
+                                <h4>Upload Your Resume</h4>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="resume" id="resume" type="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Upload Your Resume'" placeholder="Upload Your Resume">
+                                @error('resume')
+                                <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3 text-center">
+                        <button type="submit" class="button button-contactForm boxed-btn">Apply</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <form action="#" class="search-box">
-            <div class="input-form">
-                <input type="file" placeholder="Job Tittle or keyword">
-            </div>
-            <div class="search-form" type="submit">
-                <a>
-                    Send
-                </a>
-            </div>
-
-        </form>
     </div>
+</section>
 @endsection

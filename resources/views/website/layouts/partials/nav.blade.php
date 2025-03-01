@@ -18,11 +18,15 @@
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
                                             <li><a href="{{url('/')}}">Home</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="{{route('website.about')}}">About</a></li>
+                                            <li><a href="{{route('website.contact')}}">Contact</a></li>
                                             @auth()
                                                 @if(auth()->user()->isApplicant())
-                                                <li><a href="">My Profile</a></li>
+                                                    <li><a href="#">My Profile</a>
+                                                        <ul class="submenu">
+                                                            <li><a href="{{route('website.my-applications')}}">My Applications</a></li>
+                                                        </ul>
+                                                    </li>
                                                 @endif
                                                 @if(auth()->user()->isAdmin())
                                                 <li><a href="{{url('admin/home')}}">Dashbord</a></li>

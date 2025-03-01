@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ApplicantController;
+use App\Http\Controllers\Admin\ApplicationController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\PositionController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Website\ApplyJobController;
+use App\Http\Controllers\Website\WebsiteApplicationController;
 use App\Http\Controllers\Website\Auth\LoginController;
 use App\Http\Controllers\Website\Auth\RegisterController;
 use App\Http\Controllers\Website\HomeController as WebsiteHomeController;
@@ -33,13 +34,27 @@ use Illuminate\Support\Facades\Route;
 Route::group(['as' => 'website.'], function (){
     Route::get('/', [WebsiteHomeController::class, 'home'])->name('home');
     Route::get('/job-details/{id}',[JobDetailsController::class, 'jobDetails'])->name('job-details');
-    Route::get('/apply-job/{id}',[JobDetailsController::class, 'applyForm'])->name('apply-job');
 
     Route::get('login', [LoginController::class, 'loginView'])->name('login')->middleware('guest');
     Route::post('login', [LoginController::class, 'login'])->name('submitLogin')->middleware('guest');
-//
     Route::get('register', [RegisterController::class, 'registerView'])->name('register')->middleware('guest');
     Route::post('register', [RegisterController::class, 'register'])->name('submitRegister')->middleware('guest');
+    Route::get('/about', function () {;
+        return view('website.about');
+    })->name('about');
+    Route::get('/contact', function () {
+        return view('website.contact');
+    })->name('contact');
+
+    Route::group(['middleware' => 'auth'], function (){
+        Route::get('apply-job/{id}', [WebsiteApplicationController::class, 'applyForm'])->name('apply-job');
+        Route::post('apply-job/{id}', [WebsiteApplicationController::class, 'apply'])->name('submit-apply-job');
+        Route::get('my-applications', [WebsiteApplicationController::class, 'myApplications'])->name('my-applications');
+        Route::get('/application/{id}',[WebsiteApplicationController::class, 'application'])->name('application');
+        Route::get('/cancel-application/{id}',[WebsiteApplicationController::class, 'cancelApplication'])->name('cancel-application');
+
+
+    });
 
 });
 
@@ -52,6 +67,7 @@ Route::group(['prefix' => 'admin'], function (){
         Route::resource('jobs', JobController::class);
         Route::resource('applicants', ApplicantController::class)->only('index', 'destroy');
         Route::resource('admins', AdminController::class);
+        Route::resource('applications', ApplicationController::class);
     });
 
 });

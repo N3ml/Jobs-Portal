@@ -14,9 +14,4 @@ class JobDetailsController extends Controller
         return view('website.job-details', compact('job'));
     }
 
-    public function applyForm(string $id)
-    {
-        $job = Job::with('position')->findOrFail($id);
-        return view('website.apply-job', compact('job'));
-    }
 }

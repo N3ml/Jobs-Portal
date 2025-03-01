@@ -14,19 +14,26 @@
                         <div class="col-sm-8 m-auto">
                             <div class="form-group">
                                 <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
-                            </div>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                @error('email')
+                                <span class="text-danger">
+                                        {{ $message }}
                                 </span>
-                            @enderror
+                                @enderror
+                            </div>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-8 m-auto">
                             <div class="form-group">
                                 <input class="form-control" name="password" id="password" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter password'" placeholder="Enter password">
+                                @error('password')
+                                <span class="text-danger">
+                                    {{ $message }}
+                            </span>
+                                @enderror
                             </div>
+
                         </div>
                     </div>
                     <div class="form-group mt-3 text-center">
